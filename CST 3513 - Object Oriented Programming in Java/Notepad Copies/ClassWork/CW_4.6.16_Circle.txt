@@ -1,0 +1,56 @@
+---Circle.java---
+package ClassWork2;
+
+public class Circle {
+	private double radius;
+	private double diameter;
+	private double area;
+	
+	public Circle(){
+		radius = 1;
+		diameter = computeDiameter();
+		area = computeArea();
+	}
+	
+	//set and get radius methods
+	public void setRadius(double r){
+		radius = r;
+		diameter = computeDiameter();
+		area = computeArea();
+	}
+	public double getRadius(){
+		return radius;
+	}
+	
+	//compute diameter and area methods
+	public double computeDiameter(){
+		return radius * 2;
+	}
+	
+	public double computeArea(){
+		return 3.14 * radius * radius;
+	}
+	
+	//toString method
+	public String toString(){
+		return "Radius = " + radius + ", Diameter = " + diameter + ", Area = " + area;
+	}
+}
+
+---TestCircle.java---
+package ClassWork2;
+
+public class TestCircle {
+	public static void main(String[] args){
+		Circle circ1 = new Circle();
+		Circle circ2 = new Circle();
+		Circle circ3 = new Circle();
+		
+		circ2.setRadius(2);
+		circ3.setRadius(9);
+		
+		System.out.println("The values of circ1 are: " + circ1);
+		System.out.println("The values of circ2 are: " + circ2);
+		System.out.println("The values of circ3 are: " + circ3);
+	}
+}

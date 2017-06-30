@@ -1,0 +1,186 @@
+---Polygons.java---
+package inheritance;
+
+public class Polygons {
+	private double area, perimeter;
+	
+	public void printArea(){
+		System.out.println("The area is: " + area);
+	}
+	
+	public void printPerimeter(){
+		System.out.println("The perimeter is: " + perimeter);
+	}
+	
+	//accessor methods
+	public void setArea(double area){this.area = area;}
+	public void setPerimeter(double perimeter){this.perimeter = perimeter;}
+	public double getArea(){return area;}
+	public double getPerimeter(){return perimeter;}
+}
+
+---Triangle.java---
+package inheritance;
+
+public class Triangle extends Polygons{
+	private int sideA = 1, sideB = 1, sideC = 1;
+	public Triangle(int sideA, int sideB, int sideC){
+		this.sideA = sideA;
+		this.sideB = sideB;
+		this.sideC = sideC;
+	}
+	
+	public void calcArea(){
+		double s, area;
+		if(!triangleTest()){
+			System.out.println("This is not a valid triangle!");
+		}
+		else{
+			s = (sideA + sideB + sideC)  / 2;
+			area = Math.sqrt(s * (s - sideA) * (s - sideB) * (s - sideC));
+			
+			super.setArea(area);
+			super.printArea();
+		}
+	}
+	
+	public void calcPerimeter(){
+		double perimeter;
+		if(!triangleTest()){
+			System.out.println("This is not a valid triangle!");
+		}
+		else{
+			perimeter = sideA + sideB + sideC;
+			
+			super.setPerimeter(perimeter);
+			super.printPerimeter();
+		}
+	}
+	
+	
+	private boolean triangleTest(){
+		boolean test = false;
+		//test for sideA being biggest
+		if(sideA > sideB){
+			if(sideA > sideC){
+				if(sideB + sideC > sideA)
+					test = true;
+				else if(sideB + sideC < sideA)
+					test = false;
+			}
+		}
+		//test for sideB being biggest
+		if(sideB > sideA){
+			if(sideB > sideC){
+				if(sideA + sideC > sideB)
+					test = true;
+				else if(sideA + sideC < sideB)
+					test = false;
+			}
+		}
+		//test for sideC being biggest
+		if(sideC > sideB){
+			if(sideC > sideA){
+				if(sideA + sideB > sideC)
+					test = true;
+				else if(sideA + sideB < sideC)
+					test = false;
+			}
+		}
+		return test;
+	}
+	
+	//accessor methods
+	public void setSideA(int sideA){this.sideA = sideA;}
+	public void setSideB(int sideB){this.sideB = sideB;}
+	public void setSideC(int sideC){this.sideC = sideC;}
+	public int getSideA(){return sideA;}
+	public int getSideB(){return sideB;}
+	public int getSideC(){return sideC;}
+}
+
+---Rectangle.java---
+package inheritance;
+
+public class Rectangle extends Polygons{
+	private int sideA = 1, sideB = 1;
+	public Rectangle(int sideA, int sideB){
+		this.sideA = sideA;
+		this.sideB = sideB;
+	}
+	
+	public void calcArea(){
+		double area;
+		area = sideA * sideB;
+		
+		super.setArea(area);
+		super.printArea();
+	}
+	
+	public void calcPerimeter(){
+		double perimeter;
+		perimeter = 2 * (sideA + sideB);
+		
+		super.setPerimeter(perimeter);
+		super.printPerimeter();
+	}
+	
+	//accessor methods
+	public void setSideA(int sideA){this.sideA = sideA;}
+	public void setSideB(int sideB){this.sideB = sideB;}
+	public int getSideA(){return sideA;}
+	public int getSideB(){return sideB;}
+}
+
+---Square.java---
+package inheritance;
+
+public class Square extends Polygons{
+	private int sideA = 1;
+	public Square(int sideA){
+		this.sideA = sideA;
+	}
+	
+	public void calcArea(){
+		double area;
+		area = sideA * sideA;
+		
+		super.setArea(area);
+		super.printArea();
+	}
+	
+	public void calcPerimeter(){
+		double perimeter;
+		perimeter = 4 * sideA;
+		
+		super.setPerimeter(perimeter);
+		super.printPerimeter();
+	}
+	
+	//accessor methods
+	public void setSideA(int sideA){this.sideA = sideA;}
+	public int getSideA(){return sideA;}
+}
+
+---Demo.java---
+package inheritance;
+
+public class Demo {
+	public static void main(String[] args){
+		Triangle triOne = new Triangle(3, 1, 5);
+		Rectangle recOne = new Rectangle(5, 9);
+		Square sqrOne = new Square(7);
+		
+		triOne.calcArea();
+		triOne.calcPerimeter();
+		System.out.println();
+		
+		recOne.calcArea();
+		recOne.calcPerimeter();
+		System.out.println();
+		
+		sqrOne.calcArea();
+		sqrOne.calcPerimeter();
+		System.out.println();
+	}
+}

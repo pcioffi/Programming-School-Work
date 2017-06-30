@@ -1,0 +1,208 @@
+---Quadrilateral.java---
+package QuadInheritance;
+
+public class Quadrilateral {
+	protected double x1, y1, x2, y2, x3, y3, x4, y4;
+	
+	public Quadrilateral(double x1, double x2, double x3, double x4, double y1, double y2, double y3, double y4){
+		this.x1 = x1;
+		this.x2 = x2;
+		this.x3 = x3;
+		this.x4 = x4;
+		this.y1 = y1;
+		this.y2 = y2;
+		this.y3 = y3;
+		this.y4 = y4;
+	}
+	
+	public String toString(){
+		String output = 
+				"Coordinates of Quadrilateral are:\n(" +
+				x1 + ", " +
+				y1 + "), (" +
+				x2 + ", " +
+				y2 + "), (" +
+				x3 + ", " +
+				y3 + "), (" +
+				x4 + ", " +
+				y4 + ")\n"
+		;
+		return output;
+	}
+}
+
+---Trapezoid.java---
+package QuadInheritance;
+
+public class Trapezoid extends Quadrilateral{
+	public Trapezoid(double x1, double x2, double x3, double x4, double y1, double y2){
+		super(x1, x2, x3, x4, y1, y1, y2, y2);
+		//y1 and y2 are the same
+		//y3 and y4 are the same
+	}
+	
+	//length of bottom side
+	public double LengthA(){
+		return Math.abs(x2 - x1);
+	}
+	//length of top side
+	public double LengthB(){
+		return Math.abs(x4 - x3);
+	}
+	public double height(){
+		return Math.abs(y3 - y1);
+	}
+	
+	public double getArea(){
+		double area = (((LengthA() + LengthB()) / 2) * height());
+		return area;
+	}
+	
+	public String toString(){
+		String output = 
+				"Coordinates of Trapezoid are:\n(" +
+				super.x1 + ", " +
+				super.y1 + "), (" +
+				super.x2 + ", " +
+				super.y2 + "), (" +
+				super.x3 + ", " +
+				super.y3 + "), (" +
+				super.x4 + ", " +
+				super.y4 + ")\nBottom Length is: " +
+				LengthA() + "\nTop Length is: " +
+				LengthB() + "\nHeight is: " +
+				height() + "\nArea is: " +
+				getArea() +"\n"
+		;
+		return output;
+	}
+}
+
+---Parallelogram.java---
+package QuadInheritance;
+
+public class Parallelogram extends Trapezoid{
+	public Parallelogram(double x1, double x2, double x3, double y1, double y2){
+		super(x1, x2, x3, Math.abs(x2 - x1) + x3, y1, y2);
+		//x4 is determined by getting the length of x1 and x2 and then adding it to x3
+		//y4 = y3
+	}
+	
+	public double width(){
+		return super.LengthA();
+	}
+	
+	public double getArea(){
+		double area = width() * super.height();
+		return area;
+	}
+	
+	public String toString(){
+		String output = 
+				"Coordinates of Parallelogram are:\n(" +
+				super.x1 + ", " +
+				super.y1 + "), (" +
+				super.x2 + ", " +
+				super.y2 + "), (" +
+				super.x3 + ", " +
+				super.y3 + "), (" +
+				super.x4 + ", " +
+				super.y4 + ")\nWidth is: " +
+				width() + "\nHeight is: " +
+				super.height() + "\nArea is: " +
+				getArea() +"\n"
+		;
+		return output;
+	}
+}
+
+---Rectangle.java---
+package QuadInheritance;
+
+public class Rectangle extends Parallelogram{
+	public Rectangle(double x1, double x2, double y1, double y2){
+		super(x1, x2, x1, y1, y2);
+		//x3 = x1
+	}
+	
+	public double getArea(){
+		double area = super.height() * super.width();
+		return area;
+	}
+	
+	public String toString(){
+		String output = 
+				"Coordinates of Rectangle are:\n(" +
+				super.x1 + ", " +
+				super.y1 + "), (" +
+				super.x2 + ", " +
+				super.y2 + "), (" +
+				super.x3 + ", " +
+				super.y3 + "), (" +
+				super.x4 + ", " +
+				super.y4 + ")\nWidth is: " +
+				super.width() + "\nHeight is: " +
+				super.height() + "\nArea is: " +
+				getArea() +"\n"
+		;
+		return output;
+	}
+}
+
+---Square.java---
+package QuadInheritance;
+
+public class Square extends Rectangle{
+	public Square(double x1, double x2, double y1){
+		super(x1, x2, y1, Math.abs(x2 - x1) + y1);
+		//y2 is determined by getting the length of x1 and x2, then adding it to y1
+	}
+	
+	public double side(){
+		return super.width();
+	}
+	
+	public double getArea(){
+		double area = side() * side();
+		return area;
+	}
+	
+	public String toString(){
+		String output = 
+				"Coordinates of Square are:\n(" +
+				super.x1 + ", " +
+				super.y1 + "), (" +
+				super.x2 + ", " +
+				super.y2 + "), (" +
+				super.x3 + ", " +
+				super.y3 + "), (" +
+				super.x4 + ", " +
+				super.y4 + ")\nSide is: " +
+				side() + "\nArea is: " +
+				getArea() +"\n"
+		;
+		return output;
+	}
+}
+
+---Demo.java---
+package QuadInheritance;
+
+public class Demo {
+	public static void main(String[] args){
+		Quadrilateral quad = new Quadrilateral(1.1, 6.6, 6.2, 2.2, 1.2, 2.8, 9.9, 7.4);
+		System.out.println(quad);
+		
+		Trapezoid trap = new Trapezoid(0, 10, 8, 3.3, 0, 5);
+		System.out.println(trap);
+		
+		Parallelogram para = new Parallelogram(5, 11, 6 ,5, 20);
+		System.out.println(para);
+
+		Rectangle rect = new Rectangle(17, 30, 14, 28);
+		System.out.println(rect);
+		
+		Square sqre = new Square(4, 8, 0);
+		System.out.println(sqre);
+	}
+}

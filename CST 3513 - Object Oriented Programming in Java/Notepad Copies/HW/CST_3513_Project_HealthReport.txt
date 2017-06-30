@@ -1,0 +1,254 @@
+---Date.java---
+package HeartRateCalculator;
+
+public class Date {
+	protected int month, day, year;
+	public Date(int month, int day, int year){
+		this.month = month;
+		this.day = day;
+		this.year = year;
+	}
+	
+	public String toString(){
+		String output = month + "/" + day + "/" + year;
+		return output;
+	}
+}
+
+---HeartRates.java---
+package HeartRateCalculator;
+
+public class HeartRates {
+	private String firstName, lastName;
+	private Date dateOfBirth;
+	private static final int CURRENT_YEAR = 2016;
+	
+	public HeartRates(String firstName, String lastName, Date dateOfBirth){
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.dateOfBirth = dateOfBirth;
+	}
+	
+	//set & get first name
+	public void setFirstName(String firstName){ this.firstName = firstName; }
+	public String getFirstName(){ return this.firstName; }
+	
+	//set & get last name	
+	public void setLastName(String lastName){ this.lastName = lastName; }
+	public String getLastName(){ return this.lastName; }
+	
+	//set & get date of birth
+	public void setDateOfBirth(Date dateOfBirth){ this.dateOfBirth = dateOfBirth; }
+	public void setDateOfBirth(int month, int day, int year){	//second setDateOfBirth method if you don't have a Date variable in Demo
+		Date dateOfBirth = new Date(month, day, year);
+		this.dateOfBirth = dateOfBirth;
+	}
+	public Date getDateOfBirth(){ return this.dateOfBirth; }
+	
+	//method that returns age in years
+	public int age(){
+		int age = CURRENT_YEAR - dateOfBirth.year;
+		return age;
+	}
+	
+	//method that returns max heart in beats per minute
+	public int maxHeartBeats(){
+		int maxHeartBeats = 220 - age();
+		return maxHeartBeats;
+	}
+	
+	//method that returns person's target heart rate
+	public String targetHeartRate(){
+		double lowHeartRate = maxHeartBeats() * 0.5;
+		double highHeartRate = maxHeartBeats() * 0.85;
+		String targetHeartRate = "Between " + lowHeartRate + " & " + highHeartRate;
+		return targetHeartRate;
+	}
+}
+
+
+---HealthProfile.java---
+package HeartRateCalculator;
+
+public class HealthProfile extends HeartRates{
+	private char gender;
+	private double height, weight;
+	
+	public HealthProfile(String firstName, String lastName, char gender, Date dateOfBirth, double height, double weight){
+		super(firstName, lastName, dateOfBirth);
+		this.gender = gender;
+		this.height = height;
+		this.weight = weight;
+	}
+		
+	//set & get gender
+	public void setGender(char gender){ this.gender = gender; }
+	public char getGender(){ return this.gender; }
+	
+	//set & get height
+	public void setHeight(double height){ this.height = height; }
+	public double getHeight(){ return this.height; }
+	
+	//set & get weight
+	public void setWeight(double weight){ this.weight = weight; }
+	public double getWeight(){ return this.weight; }
+	
+	//method to return BMI
+	public double BMI(){
+		double bmi = (this.weight * 703) / (this.height * this.height);
+		return bmi;
+	}
+}
+
+---Demo1.java---
+package HeartRateCalculator;
+
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class Demo1 {
+	static String firstName, lastName;
+	static Date dob;
+	
+	public static void main(String[] args){
+		optionDialog();
+		HeartRates myHeartRate = new HeartRates(firstName, lastName, dob);
+		
+		System.out.println(
+			"First name: " + myHeartRate.getFirstName() + "\n" +
+			"Last name: " + myHeartRate.getLastName() + "\n" +
+			"Age: " + myHeartRate.age() + "\n" +
+			"Maximum heart rate: " + myHeartRate.maxHeartBeats() + "\n" +
+			"Target heart rate range:\n  " + myHeartRate.targetHeartRate()
+		);
+	}
+	
+	public static void optionDialog(){
+		JTextField firstNameField = new JTextField(12);
+	    JTextField lastNameField = new JTextField(12);
+	    JTextField monthField = new JTextField(2);
+	    JTextField dayField = new JTextField(2);
+	    JTextField yearField = new JTextField(4);
+
+	    JPanel myPanel = new JPanel();
+	    
+	    //first name panel
+	    myPanel.add(new JLabel("First Name:"));
+	    myPanel.add(firstNameField);
+	    
+	    //last name panel
+	    myPanel.add(new JLabel("Last Name:"));
+	    myPanel.add(lastNameField);
+
+	    //date panel
+	    myPanel.add(new JLabel("Date Of Birth:"));
+	    myPanel.add(monthField);
+	    myPanel.add(new JLabel("/"));
+	    myPanel.add(dayField);
+	    myPanel.add(new JLabel("/"));
+	    myPanel.add(yearField);
+	    
+	    int result = JOptionPane.showConfirmDialog(null, myPanel, 
+	    		"Please Enter The Appropriate Information", JOptionPane.OK_CANCEL_OPTION);
+	    if (result == JOptionPane.OK_OPTION) {
+	    	firstName = firstNameField.getText();
+	    	lastName = lastNameField.getText();
+	    	dob = new Date((Integer.parseInt(monthField.getText())), (Integer.parseInt(dayField.getText())), (Integer.parseInt(yearField.getText())));
+	    }
+	}
+}
+
+---Demo2.java---
+package HeartRateCalculator;
+
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class Demo2 {
+	static String firstName, lastName;
+	static char gender;
+	static Date dob;
+	static int height, weight;
+	
+	public static void main(String[] args){	
+		optionDialog();
+		HealthProfile myHealthProfile = new HealthProfile(firstName, lastName, gender, dob, height, weight);
+		
+		String profileInfo = "HEALTH PROFILE FOR: " + myHealthProfile.getFirstName() + " " + myHealthProfile.getLastName() + "\n" +
+							 "Gender: " + myHealthProfile.getGender() + "\n" +
+							 "Age: " + myHealthProfile.age() + "\n" +
+							 "Height (in inches): " + myHealthProfile.getHeight() + "\n" +
+							 "Weight (in pounds): " + myHealthProfile.getWeight() + "\n" +
+							 "Maximum heart rate: " + myHealthProfile.maxHeartBeats() + "\n" +
+							 "Target heart rate range:\n  " + myHealthProfile.targetHeartRate() + "\n" +
+							 "BMI: " + myHealthProfile.BMI();
+		
+		System.out.println(profileInfo + "\n\n" + BMIValues());
+	}
+
+	//method of static BMI values
+	public static String BMIValues(){
+		String bmiValues = "BMI VALUES\n" +
+						   "Underweight:   less than 18.5\n" + 
+						   "Normal:        between 18.5 and 24.9\n" +
+						   "Overweight:    between 25 and 29.9\n" +
+						   "Obese:         30 or greater";
+		return bmiValues;
+	}
+	
+	public static void optionDialog(){
+		JTextField firstNameField = new JTextField(12);
+	    JTextField lastNameField = new JTextField(12);
+	    JTextField genderField = new JTextField(1);
+	    JTextField monthField = new JTextField(2);
+	    JTextField dayField = new JTextField(2);
+	    JTextField yearField = new JTextField(4);
+	    JTextField heightField = new JTextField(3);
+	    JTextField weightField = new JTextField(3);
+
+	    JPanel myPanel = new JPanel();
+	    
+	    //first name panel
+	    myPanel.add(new JLabel("First Name:"));
+	    myPanel.add(firstNameField);
+	    
+	    //last name panel
+	    myPanel.add(new JLabel("Last Name:"));
+	    myPanel.add(lastNameField);
+	    
+	    //gender panel
+	    myPanel.add(new JLabel("Gender:"));
+	    myPanel.add(genderField);
+
+	    //date panel
+	    myPanel.add(new JLabel("Date Of Birth:"));
+	    myPanel.add(monthField);
+	    myPanel.add(new JLabel("/"));
+	    myPanel.add(dayField);
+	    myPanel.add(new JLabel("/"));
+	    myPanel.add(yearField);
+	    
+	    //height panel
+	    myPanel.add(new JLabel("Height (in inches):"));
+	    myPanel.add(heightField);
+	    
+	    //weight panel
+	    myPanel.add(new JLabel("Weight (in pounds):"));
+	    myPanel.add(weightField);
+	    
+	    int result = JOptionPane.showConfirmDialog(null, myPanel, 
+	    		"Please Enter The Appropriate Information", JOptionPane.OK_CANCEL_OPTION);
+	    if (result == JOptionPane.OK_OPTION) {
+	    	firstName = firstNameField.getText();
+	    	lastName = lastNameField.getText();
+	    	gender = genderField.getText().charAt(0);
+	    	dob = new Date((Integer.parseInt(monthField.getText())), (Integer.parseInt(dayField.getText())), (Integer.parseInt(yearField.getText())));
+	    	height = Integer.parseInt(heightField.getText());
+	    	weight = Integer.parseInt(weightField.getText());
+	    }
+	}
+}

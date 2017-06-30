@@ -1,0 +1,99 @@
+package ClassWork;
+
+public class Rectangle {
+	private double length;
+	private double width;
+	
+	public Rectangle(){
+		this.length = 1;
+		this.width = 1;
+	}
+	
+	public Rectangle(double length, double width){
+		length = this.length;
+		width = this.width;
+	}
+	
+	
+	//sets int to double
+	public Rectangle(int length, int width){
+		this.length = length;
+		this.width = width;
+	}
+	
+	//perimeter and area methods
+	public double perimeter(){
+		return (2 * this.length) + (2 * this.width); 
+	}
+	public double area(){
+		return this.length * this.width;
+	}
+	
+	//set length & width methods
+	public void setLength(double length){
+		if(length > 0.0 && length < 20.0)
+			this.length = length;
+		else
+			System.out.println(length + " is not a valid number range");
+	}
+	public void setWidth(double width){
+		if(width > 0.0 && width < 20.0)
+			this.width = width;
+		else
+			System.out.println(width + " is not a valid number range");
+	}
+	
+	//get length & width methods
+	public double getLength(){
+		return this.length;
+	}
+	public double getWidth(){
+		return this.width;
+	}
+	
+	//default string
+	public String toString(){
+		return "Length: " + this.length + ", Width: " + this.width;
+	}
+	
+	public static void main(String[] args){
+		Rectangle rect = new Rectangle();
+		System.out.println(rect);
+		
+		//choice 1
+		rect.setLength(10.0);
+		double per1 = rect.perimeter();
+		double area1 = rect.area();
+		System.out.println();
+		
+		System.out.println(rect);
+		System.out.println("Perimeter: " + per1);
+		System.out.println("Area: " + area1);
+		System.out.println();
+		
+		//choice 2
+		rect.setWidth(5.0);
+		double per2 = rect.perimeter();
+		double area2 = rect.area();
+		
+		System.out.println(rect);
+		System.out.println("Perimeter: " + per2);
+		System.out.println("Area: " + area2);
+		System.out.println();
+		
+		//failed set of length/width
+		rect.setWidth(22.0);
+		rect.setLength(0.0);
+		double per3 = rect.perimeter();
+		double area3 = rect.area();
+		
+		System.out.println(rect);
+		System.out.println("Perimeter: " + per3);
+		System.out.println("Area: " + area3);
+		System.out.println();
+		
+		//int to double
+		Rectangle iRect = new Rectangle(5, 7);
+		System.out.println(iRect);
+	}
+}

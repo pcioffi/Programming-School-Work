@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Question 2</title>
+</head>
+	<style>
+	
+		*{
+			font-family: verdana;
+			font-size:10pt;
+		}
+	
+		#container {
+			width: 600px;
+			margin: 0 auto;
+			margin-top: 1in;
+		}
+		
+		#left {
+			float: left;
+			width: 275px;
+		}
+		
+		#right {
+			float: right;
+			width: 275px;
+		}
+		
+		#left, #right{
+			border: solid 1px black;
+			padding: 3px;		
+		}
+		
+		#center {			
+			width: 100px;
+		}
+		
+		h1{
+			font-size: 150%;
+		}
+		#answer1, #answer2{
+			display: inline-block;
+			width: 100px;
+			border: solid 1px black;
+			text-align: right;
+			margin-left: 10px;
+		}
+		
+	</style>
+<body>
+<div id="container">
+		<h1>Team</h1>
+		<div id='left'>
+			<h3 align="center">Team</h3>
+			<ol id="team1">
+				<li>
+					<span>Lindsey Bradley</span>
+					<span class='dev-money'>95768</span>
+				</li>
+				<li>
+					<span>Terrance Davis</span>
+					<span class='dev-money'>95667</span>
+				</li>
+				<li>
+					<span>Courtney Burton</span>
+					<span class='dev-money'>98398</span>
+				</li>
+				<li>
+					<span>Naomi Fisher</span>
+					<span class='dev-money'>99320</span>
+				</li>
+				<li>
+					<span>Roland Allen</span>
+					<span class='dev-money'>96035</span>
+				</li>
+				<li>
+					<span>Jim Dunn</span>
+					<span class='dev-money'>99810</span>
+				</li>
+				<li>
+					<span>Cesar Walters</span>
+					<span class='dev-money'>98826</span>
+				</li>
+				<li>
+					<span>Genevieve Knight</span>
+					<span class='dev-money'>96247</span>
+				</li>
+				<li>
+					<span>Norman Freeman</span>
+					<span class='dev-money'>97109</span>
+				</li>
+				<li>
+					<span>Stella Page</span>
+					<span class='dev-money'>95050</span>
+				</li>
+			</ol>
+			<input type="button" value="calculate" id="btn1" /><span id="answer1">##,###</span>
+		</div>
+		<div id='right'>
+			<h3 align="center">Team 2</h3>
+			<ol id="team2">
+				<li>
+					<span>Emmett Keller</span>
+					<span class='dev-money'>95115</span>
+				</li>
+				<li>
+					<span>Domingo Flowers</span>
+					<span class='dev-money'>99421</span>
+				</li>
+				<li>
+					<span>Herman Sanchez</span>
+					<span class='dev-money'>96247</span>
+				</li>
+				<li>
+					<span>Alfred Garrett</span>
+					<span class='dev-money'>98134</span>
+				</li>
+				<li>
+					<span>Israel Andrews</span>
+					<span class='dev-money'>96062</span>
+				</li>
+				<li>
+					<span>Taylor Bates</span>
+					<span class='dev-money'>99316</span>
+				</li>
+				<li>
+					<span>Wilbur Tate</span>
+					<span class='dev-money'>95635</span>
+				</li>
+				<li>
+					<span>Charlie Ryan</span>
+					<span class='dev-money'>96169</span>
+				</li>
+				<li>
+					<span>Johnny Fernandez</span>
+					<span class='dev-money'>95811</span>
+				</li>
+				<li>
+					<span>Glen Holmes</span>
+					<span class='dev-money'>97322</span>
+				</li>
+			</ol>
+			<input type="button" value="calculate" id="btn2" /><span id="answer2">##,###</span>
+		</div>
+	</div>
+	<script src="02.logic.js"></script>	
+	</body>
+</html>

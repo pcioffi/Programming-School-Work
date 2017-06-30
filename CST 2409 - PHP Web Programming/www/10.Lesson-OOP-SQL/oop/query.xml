@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- FileName: query.xml 
+     ReadQuery.php -->
+<queries>
+	<query name="q1">	
+		select 
+			  e.id
+			, e.firstName
+			, e.lastName
+			, e.salary
+			, et.description
+		from Employee e
+		inner join EmployeeTitle et
+		on e.titleId = et.id
+		order by e.lastName 	
+	</query>
+	<query name="q2">Query Two</query>
+	<query name="q3">Query Three</query>
+	<query name="q4">
+		SELECT id, firstname, lastname 
+		FROM Customer
+		Where firstName like '%_code_%' 
+			or lastName like '%_code_%'
+		order by lastname desc
+	</query>
+	<query name="q5">Query Five</query>
+</queries>

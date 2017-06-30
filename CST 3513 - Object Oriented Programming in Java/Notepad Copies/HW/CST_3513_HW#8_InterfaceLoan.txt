@@ -1,0 +1,153 @@
+---LoanConstants.java---
+package ConstructionLoans;
+
+public interface LoanConstants {
+	public static final int SHORT_TERM = 1;
+	public static final int MEDIUM_TERM = 3;
+	public static final int LONG_TERM = 5;
+	public static final String COMPANY_NAME = "Sanchez Construction Loan Co.";
+	public static final int MAXIMUM_LOAN_AMOUNT = 100000;
+}
+
+---Loan.java---
+package ConstructionLoans;
+
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
+public abstract class Loan implements LoanConstants{
+	protected int loan_number, loan_amount, term;
+	protected String customer_lname;
+	protected double interest_rate;
+	
+	//Constructor
+	public Loan(int loan_number, String customer_lname, int loan_amount, int term){
+		this.loan_number = loan_number;
+		this.customer_lname = customer_lname;
+		
+		//restricts the loan amount to a maximum of 100000
+		if(loan_amount >= MAXIMUM_LOAN_AMOUNT)
+			this.loan_amount = MAXIMUM_LOAN_AMOUNT;
+		else
+			this.loan_amount = loan_amount;
+		
+		//setting terms to short if it's not either a long or medium term
+		if(term == LONG_TERM)
+			this.term = LONG_TERM;
+		else if(term == MEDIUM_TERM)
+			this.term = MEDIUM_TERM;
+		else
+			this.term = SHORT_TERM;
+	}
+	
+	public abstract void setInterestRate(double prime_interest);
+	
+	//toString method
+	public String toString(){
+		//formating the interest rate number and loan amount
+		DecimalFormat df = new DecimalFormat();
+		NumberFormat form = NumberFormat.getCurrencyInstance();
+		
+		//making a string output of the term number
+		String[] term_string = new String[6];
+		term_string[1] = "Short Term";
+		term_string[3] = "Medium Term";
+		term_string[5] = "Long Term";
+		
+		//actual output
+		String output = COMPANY_NAME + "\n" +
+						"Loan Number: " + loan_number +
+						" | Customer Last Name: " + customer_lname +
+						" | Loan Amount: " + form.format(loan_amount) +
+						" | Interest Rate: " + (df.format(interest_rate * 100)) + "%" +
+						" | Term: " + term_string[term];
+		return output;
+	}
+}
+
+---BusinessLoan.java---
+package ConstructionLoans;
+
+public class BusinessLoan extends Loan{
+	public BusinessLoan(int loan_number, String customer_lname, int loan_amount, int term){
+		super(loan_number,customer_lname, loan_amount, term);
+		super.interest_rate = super.interest_rate + 0.01;
+	}
+	
+	public void setInterestRate(double prime_interest){
+		super.interest_rate += prime_interest;
+	}
+}
+
+---PersonLoan.java---
+package ConstructionLoans;
+
+public class PersonLoan extends Loan{
+	public PersonLoan(int loan_number, String customer_lname, int loan_amount, int term){
+		super(loan_number,customer_lname, loan_amount, term);
+		super.interest_rate = super.interest_rate + 0.02;
+	}
+	
+	public void setInterestRate(double prime_interest){
+		super.interest_rate += prime_interest;
+	}
+}
+
+---CreateLoans.java---
+package ConstructionLoans;
+
+import java.util.Scanner;
+
+public class CreateLoans {
+	public static void main(String[] args){
+		Scanner in = new Scanner(System.in);
+		System.out.println("Set Current Prime Interest: ");
+		double prime_interest = in.nextDouble();
+		System.out.println();
+		
+		Loan[] loanArray = new Loan[5];
+	
+		for(int i = 0; i < loanArray.length; i++){
+			//requesting loan type
+			System.out.println("Loan Type (either 'business' or 'person'): ");
+			String loan_type = in.next();
+			
+			//checks if you input the right word
+			if(loan_type.contains("business") || loan_type.contains("person")){
+				//requesting other information
+				int number, amount, term;
+				String last;
+				
+				System.out.println("Number: ");
+				number = in.nextInt();
+				
+				System.out.println("Last Name: ");
+				last = in.next();
+				
+				System.out.println("Loan Amount: ");
+				amount = in.nextInt();
+				
+				System.out.println("Term: ");
+				term = in.nextInt();
+				
+				//populating the array, with cases of either business or person loans
+				if(loan_type.contains("business")){
+					loanArray[i] = new BusinessLoan(number, last, amount, term);
+					loanArray[i].setInterestRate((Double) prime_interest / 100);
+					System.out.println(loanArray[i].toString());
+					System.out.println();
+				}
+				else if(loan_type.contains("person")){
+					loanArray[i] = new PersonLoan(number, last, amount, term);
+					loanArray[i].setInterestRate((Double) prime_interest / 100);
+					System.out.println(loanArray[i].toString());
+					System.out.println();
+				}
+			}
+			else{
+				System.out.println("INCORRECT INPUT!");
+				System.out.println();
+			}
+		}
+	}
+}

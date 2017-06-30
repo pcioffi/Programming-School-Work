@@ -1,0 +1,45 @@
+---CabinRental.java---
+package ClassWork3;
+
+public class DemoCabinRental {
+	public static void main(String[] args){
+		CabinRental offSeason = new CabinRental(3);
+		HolidayCabinRental onSeason = new HolidayCabinRental(3);
+		
+		System.out.println(offSeason.getCabinNumber() + ", " + offSeason.getRentRate());
+		System.out.println(onSeason.getCabinNumber() + ", " + onSeason.getRentRate());
+	}
+}
+
+---HolidayCabinRental.java---
+package ClassWork3;
+
+public class HolidayCabinRental extends CabinRental{
+	private double rentRate;
+	
+	public HolidayCabinRental(int num){
+		super(num);
+		rentRate = super.getRentRate() + 150;
+	}
+	
+	//get methods
+	public int getCabinNumber(){
+		return super.getCabinNumber();
+	}
+	public double getRentRate(){
+		return rentRate;
+	}
+}
+
+---DemoCabinRental.java---
+package ClassWork3;
+
+public class DemoCabinRental {
+	public static void main(String[] args){
+		CabinRental offSeason = new CabinRental(3);
+		HolidayCabinRental onSeason = new HolidayCabinRental(3);
+		
+		System.out.println(offSeason.getCabinNumber() + ", " + offSeason.getRentRate());
+		System.out.println(onSeason.getCabinNumber() + ", " + onSeason.getRentRate());
+	}
+}

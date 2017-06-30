@@ -1,0 +1,52 @@
+package ClassWork;
+
+public class Elevator {
+	private int floor;
+	
+	public Elevator(){
+		this.floor = 1;
+	}
+	
+	public void floorButton(int f){
+		//check if floor request is valid
+		if(f < 1 || f > 15){
+			System.out.println("That button doesn't exist");
+		}
+		else{
+			//if f is higher than current floor
+			if(floor < f){
+				while(floor != (f - 1)){
+					++floor;
+					System.out.println("Going Up - now at floor " + floor);
+				}
+				floor = f;
+				System.out.println("Stopping at floor " + floor);
+			}
+			//if f is lower than current floor
+			else if(floor > f){
+				while(floor != (f + 1)){
+					--floor;
+					System.out.println("Going Down - now at floor " + floor);
+				}
+				floor = f;
+				System.out.println("Stopping at floor " + floor);
+			}
+			else
+				this.floor = f;
+		}
+	}
+	
+	public String toString(){
+		return "Starting at floor " + this.floor;
+	}
+	
+	public static void main(String[] args){
+		Elevator el1 = new Elevator();
+		System.out.println(el1);
+		
+		el1.floorButton(7);
+		System.out.println();
+		
+		System.out.println(el1);
+	}
+}

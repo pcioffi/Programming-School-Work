@@ -1,0 +1,14 @@
+C:\Users\Class.CST.000\AppData\Local\Temporary Projects\GraphicsProject\bin\Debug\GraphicsProject.exe.config
+C:\Users\Class.CST.000\AppData\Local\Temporary Projects\GraphicsProject\bin\Debug\GraphicsProject.exe
+C:\Users\Class.CST.000\AppData\Local\Temporary Projects\GraphicsProject\bin\Debug\GraphicsProject.pdb
+C:\Users\Class.CST.000\AppData\Local\Temporary Projects\GraphicsProject\bin\Debug\GraphicsProject.xml
+C:\Users\Class.CST.000\AppData\Local\Temporary Projects\GraphicsProject\obj\Debug\GraphicsProject.Form1.resources
+C:\Users\Class.CST.000\AppData\Local\Temporary Projects\GraphicsProject\obj\Debug\GraphicsProject.Resources.resources
+C:\Users\Class.CST.000\AppData\Local\Temporary Projects\GraphicsProject\obj\Debug\GraphicsProject.vbproj.GenerateResource.Cache
+C:\Users\Class.CST.000\AppData\Local\Temporary Projects\GraphicsProject\obj\Debug\GraphicsProject.exe
+C:\Users\Class.CST.000\AppData\Local\Temporary Projects\GraphicsProject\obj\Debug\GraphicsProject.xml
+C:\Users\Class.CST.000\AppData\Local\Temporary Projects\GraphicsProject\obj\Debug\GraphicsProject.pdb
+C:\Users\Zero\Desktop\GraphicsProject\GraphicsProject\bin\Debug\GraphicsProject.exe.config
+C:\Users\Zero\Desktop\GraphicsProject\GraphicsProject\obj\Debug\GraphicsProject.exe
+C:\Users\Zero\Desktop\GraphicsProject\GraphicsProject\obj\Debug\GraphicsProject.xml
+C:\Users\Zero\Desktop\GraphicsProject\GraphicsProject\obj\Debug\GraphicsProject.pdb

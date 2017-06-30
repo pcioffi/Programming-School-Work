@@ -1,0 +1,31 @@
+<html>
+	<head>
+		<script>
+			function countToSubmit(){
+				var countto = document.getElementById("countto");
+				if (isNaN(countto.value)){
+					document.getElementById("countToMessage").innerHTML = "*";
+					return;
+				}
+				
+				var countByMessage = document.getElementById("multiple");
+				if (isNaN(countByMessage.value)){
+					document.getElementById("countByMessage").innerHTML = "*";
+					return;
+				}
+			
+				document.forms[0].submit();
+			}
+
+		</script>
+	</head>
+	<body>
+		<!--fileName: input.html -->
+		<form action="example01.php" method="get">
+			<label><span id="countToMessage"></span>Count to: </label> <input type="text" name="countto" id="countto"/> <br>
+			<label><span id="countByMessage"></span>Count by: </label> <input type="text" name="multiple" id="multiple"/> <br>
+			
+			<input type="button" onclick="countToSubmit()" value ="count" />
+		</form>
+	</body>
+</html>

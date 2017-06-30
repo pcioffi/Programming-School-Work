@@ -1,0 +1,101 @@
+<html>
+	<!-- fileName: TicTacToe.html -->
+	
+	<head>
+		<style>
+			body{
+				font-family: verdana;
+			}
+			
+			#game td{
+				border: solid 1px black;
+				padding: 3px;
+				font-size: 30pt;
+				width: 150px;
+				height: 150px;
+				text-align: center;
+			}
+			
+			caption{
+				font-size: 40pt;
+			}
+			
+			td.winner{
+				color: red;
+				font-weight: bold;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<table id="game">
+			<caption>Tic Tac Toe (2)</caption>
+			<tr>
+				<td>?</td>
+				<td>?</td>
+				<td>?</td>
+			</tr>
+			
+			<tr>
+				<td>?</td>
+				<td>?</td>
+				<td>?</td>
+			</tr>
+			
+			<tr>
+				<td>?</td>
+				<td>?</td>
+				<td>?</td>
+			</tr>
+		</table>
+	
+		<table id="author">
+			<tr>
+				<td>Author:</td>
+				<td>Pellegrino Cioffi</td>
+			</tr>
+		</table>
+		<script src="TicTacToe.js"></script>
+		<script>
+			(function (){
+				var isX = false;
+				
+				var game = document.getElementById("game");
+				var tds = game.getElementsByTagName("td");
+				var length = tds.length;
+				
+				var getAllValues = function(){
+					var returnValue = "";
+					for(i = 0; i < length; i++){
+						returnValue += tds[i].innerHTML;
+					}
+					return returnValue;
+				};
+				
+				var changeMe = function(){
+					var currentValue = this.innerHTML;
+					if(currentValue != "?"){
+						alert("You are not allowed to change this value, cheater!");
+						return;
+					}
+					
+					this.innerHTML = isX ? "O" : "X";
+					isX = !isX;
+					
+					var ticTacToe = new TicTacToe(getAllValues());
+					var isThereAWinner = ticTacToe.getWinner();
+					var whoWon = ticTacToe.getWhoWon();
+					var wc = ticTacToe.getWinningCombo();
+					
+					tds[wc.p1].setAttribute("class","winner");
+					tds[wc.p2].setAttribute("class","winner");
+					tds[wc.p3].setAttribute("class","winner");
+				};
+				
+				for(i = 0; i < length; i++){
+					tds[i].onclick = changeMe;
+				}
+			})();
+		</script>
+	</body>
+</html>

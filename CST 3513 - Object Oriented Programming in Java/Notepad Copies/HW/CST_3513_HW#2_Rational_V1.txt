@@ -1,0 +1,101 @@
+package Rational;
+public class Rational {
+    private int num; //numerator
+    private int den; //denominator
+
+    //initialize Rational object
+    public Rational(int numerator, int denominator) {
+    	num = numerator;
+        den = denominator;
+        reduction();
+    }
+
+    //reduces(m, n)
+    private void reduction() {	
+    	int num1 = num;
+		int num2 = den;
+		
+		//find gcd
+	    while(num1 != 0 && num2 != 0){
+	    	int temp = num2;
+	    	num2 = num1 % num2;
+	    	num1 = temp;
+	    }
+		int common = num1 + num2; //either num1 or num2 is 0, therefore the other is the common divisor
+		
+		//actual reduction
+		num = num / common;
+		den = den / common;	
+
+    }
+
+    //return (this + b)
+    public Rational Addition(Rational b) {
+        int numer = (this.num * b.den) + (this.den * b.num);
+        int denom = this.den * b.den;
+        return new Rational(numer, denom);	
+    }
+    
+    //return (this - b)
+    public Rational Subtraction(Rational b) {
+        int numer = (this.num * b.den) - (this.den * b.num);
+        int denom = this.den * b.den;
+        return new Rational(numer, denom);
+    }
+
+    //return (this * b)
+    public Rational Multiplication(Rational b) {
+    	int numer = this.num * b.num;
+    	int denom = this.den * b.den;
+    	return new Rational(numer, denom);
+    }
+    
+    
+    //return (this / b)
+    public Rational Division(Rational b) {
+    	int numer = this.num * b.den;
+    	int denom = this.den * b.num;
+    	return new Rational(numer, denom);
+    }
+    
+    //return string representation
+    public String toString() {
+        return num + "/" + den;
+    }
+    
+    //convert string to float
+    double decimal() {
+    	double n = num;
+    	double d =den;
+    	
+    	return n / d;
+    }
+    
+    public static void main(String[] args) {
+        Rational x, y, add, sub, mul, div;
+
+        // 1/3 & 7/8 for add, sub, multiply and divide
+        x = new Rational(1, 3);
+        y = new Rational(7, 8);
+        
+        add = x.Addition(y);
+        System.out.println(x + " + " + y  + " = " + add);
+        double dAdd = add.decimal();
+        System.out.println(add + " = " + dAdd);
+        
+        sub = x.Subtraction(y);
+        System.out.println(x + " - " + y  + " = " + sub);
+        double dSub = sub.decimal();
+        System.out.println(sub + " = " + dSub);
+        
+        mul = x.Multiplication(y);
+        System.out.println(x + " * " + y  + " = " + mul);
+        double dMul = mul.decimal();
+        System.out.println(mul + " = " + dMul);
+        
+        div = x.Division(y);
+        System.out.println(x + " / " + y  + " = " + div);
+        double dDiv = div.decimal();
+        System.out.println(div + " = " + dDiv);
+    }
+}

@@ -1,0 +1,82 @@
+---Ship.java---
+package ClassWork;
+
+public class Ship {
+	private String ship, year;
+	
+	public Ship(String ship, String year){
+		this.ship = ship;
+		this.year = year;
+	}
+	
+	//set and get methods
+	public void setShip(String ship){ this.ship = ship; }
+	public void setYear(String year){ this.year = year; }
+	public String getShip(){ return this.ship; }
+	public String getYear(){ return this.year; }
+	
+	public String toString(){
+		String output = "The Ship Name: " + this.ship + 
+						"\nThe Year It Was Built: " + this.year + "\n";
+		return output;
+	}
+}
+
+---CruiseShip.java---
+package ClassWork;
+
+public class CruiseShip extends Ship{
+	int maxPassengers;
+	
+	public CruiseShip(String ship, String year, int maxPassengers){
+		super(ship, year);
+		this.maxPassengers = maxPassengers;
+	}
+	
+	//set and get methods
+	public void setMaxPassengers(int maxPassengers){ this.maxPassengers = maxPassengers; }
+	public int getMaxPassengers(){ return this.maxPassengers; }
+	
+	public String toString(){
+		String output = "The Ship Name: " + super.getShip() + 
+						"\nThe Maximum Number of Passengers: " + this.maxPassengers + " people" + "\n";
+		return output;
+	}
+}
+
+---CargoShip.java---
+package ClassWork;
+
+public class CargoShip extends Ship{
+	int cargoCapacity;
+	
+	public CargoShip(String ship, String year, int cargoCapacity){
+		super(ship, year);
+		this.cargoCapacity = cargoCapacity;
+	}
+	
+	//set and get methods
+	public void setCargoCapacity(int cargoCapacity){ this.cargoCapacity = cargoCapacity; }
+	public int getCargoCapacity(){ return this.cargoCapacity; }
+	
+	public String toString(){
+		String output = "The Ship Name: " + super.getShip() + 
+						"\nThe Maximum Number of Passengers: " + this.cargoCapacity + " tons" + "\n";
+		return output;
+	}
+}
+
+---Demo.java---
+package ClassWork;
+
+public class Demo {
+	public static void main(String[] args){
+		Ship ship = new Ship("SS Maria", "1970");
+		CruiseShip cruiseShip = new CruiseShip("SS Eva", "1980", 2000);
+		CargoShip cargoShip = new CargoShip("SS Steam-Buckler", "1930", 5000);
+		
+		System.out.println(ship);
+		System.out.println(cruiseShip);
+		System.out.println(cargoShip);
+		}
+}
